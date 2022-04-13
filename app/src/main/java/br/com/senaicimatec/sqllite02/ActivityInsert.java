@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Date;
+
 public class ActivityInsert extends AppCompatActivity {
 
     private EditText txtNote;
@@ -27,6 +29,7 @@ public class ActivityInsert extends AppCompatActivity {
         //criar objeto aluno
         Nota nota = new Nota();
         nota.setDescricao(txtNote.getText().toString());
+        nota.setDataCriacao(new Date());
 
         long id = notaContext.Inserir(nota);
         Toast.makeText(this, "Nota inserida com sucesso, com o id: " +id, Toast.LENGTH_SHORT).show();

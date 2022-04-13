@@ -63,7 +63,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
-        textView.setText(nota.getDescricao());
+        textView.setText(nota.getDescricao() + "\nCriada em: " + nota.getDataCriacao().toLocaleString());
     }
 
     // Returns the total count of items in the list
