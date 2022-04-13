@@ -32,6 +32,7 @@ public class NoteFragment extends Fragment {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
         TextView txtView = view.findViewById(R.id.text_nota);
-        txtView.setText(nota.getDescricao());
+        txtView.setText(nota.getDescricao() + "\nCriada em: " + nota.getDataCriacao());
+
     }
 }
