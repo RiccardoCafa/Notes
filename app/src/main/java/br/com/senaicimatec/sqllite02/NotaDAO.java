@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class NotaDAO {
@@ -23,6 +24,8 @@ public class NotaDAO {
     public long Inserir (Nota nota){
         ContentValues values = new ContentValues();
         values.put("Descricao", nota.getDescricao());
+        values.put("DataCriacao", nota.getDataCriacao().toString());
+
         return db.insert(TableName, null, values);
     }
 
@@ -38,6 +41,7 @@ public class NotaDAO {
 
                     int idIndex = cursorNota.getColumnIndex("Id");
                     int descricaoIndex = cursorNota.getColumnIndex("Descricao");
+                    int dataCriacaoIndex = cursorNota.getColumnIndex("DataCriacao");
 
                     String indexValue = cursorNota.getString(idIndex);
 
@@ -45,6 +49,7 @@ public class NotaDAO {
 
                     novaNota.setId(id);
                     novaNota.setDescricao(cursorNota.getString(descricaoIndex));
+                    novaNota.setDataCriacao(new Date(cursorNota.getString(dataCriacaoIndex)));
 
                     notaList.add(novaNota);
                 } while(cursorNota.moveToNext());

@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class Conexao  extends SQLiteOpenHelper {
+public class    Conexao  extends SQLiteOpenHelper {
 
     private static final String name= "bancoNotas.db";
     private static final int version = 1;
@@ -17,7 +17,7 @@ public class Conexao  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS nota (Id INTEGER primary key autoincrement, Descricao VARCHAR(250))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS nota (Id INTEGER primary key autoincrement, Descricao VARCHAR(250), DataCriacao VARCHAR(10)");
     }
 
     @Override
