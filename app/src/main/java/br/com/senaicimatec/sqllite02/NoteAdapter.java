@@ -20,6 +20,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         // for any view that will be set as you render a row
         public TextView nameTextView;
         public Button messageButton;
+        public Button deleteButton;
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
@@ -30,6 +31,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
             nameTextView = (TextView) itemView.findViewById(R.id.text_nota);
             // messageButton = (Button) itemView.findViewById(R.id.message_button);
+            deleteButton = (Button) itemView.findViewById(R.id.delete_button);
         }
     }
 
@@ -64,6 +66,20 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
         textView.setText(nota.getDescricao() + "\nCriada em: " + nota.getDataCriacao().toLocaleString());
+
+        Button btn = holder.deleteButton;
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("NOTA ID: " + nota.getId());
+                NotaDAO ctx = new NotaDAO(view.getContext());
+                ctx.Delete(nota.getId());
+                int newPosition = holder.getAdapterPosition();
+                mNotas.remove(newPosition);
+                notifyItemRemoved(newPosition);
+                notifyItemRangeChanged(newPosition, mNotas.size());
+            }
+        });
     }
 
     // Returns the total count of items in the list
